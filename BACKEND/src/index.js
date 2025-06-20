@@ -16,6 +16,11 @@ app.get('/api/users', (req,res) =>{
     res.send(users)
 })
 
+// agregar staff
+app.get('/registrar/miembro',(req, res) =>{
+    res.send("Registrando miembro")
+})
+
 app.listen(port, () =>{
     console.log(`Example app listening on port ${port}`)
 })
@@ -31,23 +36,24 @@ async function Connect(){
         // sync models 
         await sequelize.sync({alter:true})
 
-        const nuevoMiembro = await members.create({
-            nombre_miembro: 'nombre1',
-            apellido_miembro: 'apellido1', 
-            ci_miembro:'xxx-xxx-xxx',
-            fecha_nacimiento_miembro:'2012-12-29',
-            fecha_asuncion_miembro: '2019-12-13',
-            rol_miembro:'VP'
-        })
+
+        // const nuevoMiembro = await members.create({
+        //     nombre_miembro: 'nombre1',
+        //     apellido_miembro: 'apellido1', 
+        //     ci_miembro:'xxx-xxx-xxx',
+        //     fecha_nacimiento_miembro:'2012-12-29',
+        //     fecha_asuncion_miembro: '2019-12-13',
+        //     rol_miembro:'VP'
+        // })
 
 
-        console.log( 'Miembro agregado', nuevoMiembro.toJSON())
+        // console.log( 'Miembro agregado', nuevoMiembro.toJSON())
 
     }catch(error){
         console.error('Error al conectarse en la bd', error)
     }finally {
-        await sequelize.close(); // cerrar conexión al final
-        console.log('Conexión cerrada');
+        // await sequelize.close(); // cerrar conexión al final
+        // console.log('Conexión cerrada');
     }
 }
 
